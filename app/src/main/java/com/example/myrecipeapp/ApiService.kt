@@ -6,11 +6,11 @@ import retrofit2.create
 import retrofit2.http.GET
 
 
-private val retrofit = Retrofit.Builder().baseUrl("www.themealdb.com/api/json/v1/1/") // we are building our retrofit URL
+private val retrofit = Retrofit.Builder().baseUrl("https://www.themealdb.com/api/json/v1/1/") // we are building our retrofit URL
     .addConverterFactory(GsonConverterFactory.create())
     .build()  // These lines are building connection to this base URL
 
-val recipeServie = retrofit.create(ApiService::class.java)
+val recipeService = retrofit.create(ApiService::class.java)
 
 interface ApiService{
     @GET("categories.php")
