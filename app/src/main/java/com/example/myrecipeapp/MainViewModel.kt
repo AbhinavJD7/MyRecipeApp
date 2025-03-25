@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class MainViewModel:ViewModel() {
     // Now we will create a data class that will take care of the state of the
     // recipe which will take care that we have the recipe or not
-    private val _categoriesState = mutableStateOf(RecipeState())
+    private val _categoriesState = mutableStateOf(RecipeState()) // mutableStateOf activates changes in the user interface
     val categoriesState: State<RecipeState> = _categoriesState
 
     init {
@@ -17,9 +17,9 @@ class MainViewModel:ViewModel() {
     }
 
     private fun fetchCategories() {
-        viewModelScope.launch {
+        viewModelScope.launch {// this coroutine helps us to call the suspend functions ..because in order to get soemthing from the internet we need to put it into suspend function
             try {
-                val response = recipeServie.getCategories()
+                val response = recipeService.getCategories()
                 _categoriesState.value = _categoriesState.value.copy(
                     list = response.categories,
                     loading = false,
